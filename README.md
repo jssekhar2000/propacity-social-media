@@ -1,212 +1,182 @@
-# AI-Powered Social Media Dashboard
+# Propacity - Social Media App
 
-A modern React Native social media dashboard built with Expo, demonstrating AI-assisted development practices and advanced mobile app development techniques.
+A production-level social media application built with React Native and Expo, featuring Instagram-like functionality with working like, comment, and share features.
 
 ## 🚀 Features
 
-### ✅ Implemented Core Features (4/6)
+### Core Social Media Features
+- **Like Posts**: Heart animation with real-time like/unlike functionality
+- **Comment System**: Full comment interface with like/unlike comments
+- **Share Posts**: Share to multiple platforms (Instagram, Facebook, Twitter, WhatsApp, etc.)
+- **Save Posts**: Bookmark posts for later viewing
+- **Stories**: Instagram-style stories with add/view functionality
+- **User Authentication**: Login/logout with persistent state
+- **Real-time Updates**: All interactions update immediately across the app
 
-1. **Smart Authentication Flow** ⭐
-   - Form validation with real-time feedback
-   - Persistent authentication state using Zustand + AsyncStorage
-   - Protected routes with automatic redirections
-   - Clean login/register UI with gradient backgrounds
+### UI/UX Features
+- **Modern Design**: Instagram-inspired interface with smooth animations
+- **Dark/Light Theme**: Dynamic theme switching with persistent preferences
+- **Responsive Layout**: Optimized for different screen sizes
+- **Loading States**: Skeleton loaders and smooth transitions
+- **Pull to Refresh**: Refresh feed with pull-to-refresh gesture
+- **Infinite Scroll**: Load more posts as you scroll
+- **Search Functionality**: Search posts with real-time results
 
-2. **Infinite Feed with Intelligence** ⭐
-   - Infinite scroll implementation with TanStack Query
-   - Pull-to-refresh functionality
-   - Real-time search capabilities
-   - Dual API support (JSONPlaceholder & DummyJSON)
-   - Smart caching and optimistic updates
+### Technical Features
+- **State Management**: Zustand for global state management
+- **Data Persistence**: AsyncStorage for offline data
+- **API Integration**: Multiple data sources (JSONPlaceholder, DummyJSON)
+- **TypeScript**: Full type safety throughout the application
+- **Performance Optimized**: Efficient rendering and memory management
 
-3. **Advanced State Management** ⭐
-   - Zustand for global state management
-   - TanStack Query for server state and caching
-   - Optimistic updates for better UX
-   - Offline-first approach with intelligent error handling
+## 📱 Screenshots
 
-4. **Interactive Post Creation**
-   - Multi-step validation with character limits
-   - Real-time form feedback and error states
-   - Rich text composition interface
-   - Smart writing tips and guidance
+The app includes:
+- **Feed Screen**: Main social feed with posts, stories, and interactions
+- **Comment Modal**: Full-screen comment interface
+- **Share Modal**: Platform selection for sharing
+- **Authentication**: Login/register screens
+- **Profile**: User profile with stats
+- **Search**: Post search functionality
 
-## 🛠 Tech Stack
+## 🛠️ Installation
 
-- **Framework:** React Native with Expo SDK 53
-- **Language:** TypeScript (100% type-safe)
-- **State Management:** Zustand + TanStack Query
-- **Navigation:** Expo Router with file-based routing
-- **UI Library:** React Native + Expo components
-- **Icons:** Lucide React Native
-- **Storage:** AsyncStorage for persistence
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd propacity-social-media
+```
 
-## 📱 Architecture
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Run on your preferred platform:
+- iOS: Press `i` in the terminal or scan QR code with Expo Go
+- Android: Press `a` in the terminal or scan QR code with Expo Go
+- Web: Press `w` in the terminal
+
+## 🏗️ Project Structure
 
 ```
-src/
-├── app/                    # File-based routing (Expo Router)
+propacity-social-media/
+├── app/                    # Expo Router screens
 │   ├── (auth)/            # Authentication screens
-│   ├── (tabs)/            # Tab-based main navigation
-│   └── _layout.tsx        # Root layout with providers
-├── components/            # Reusable UI components
-│   ├── ui/               # Generic UI components
-│   └── feed/             # Feed-specific components
-├── hooks/                # Custom hooks for API calls
-├── services/             # API service layer
-├── store/                # State management (Zustand)
+│   ├── (tabs)/            # Main app tabs
+│   └── _layout.tsx        # Root layout
+├── components/            # Reusable components
+│   ├── feed/             # Feed-specific components
+│   │   ├── PostCard.tsx  # Main post component
+│   │   ├── StoriesBar.tsx # Stories component
+│   │   ├── CommentModal.tsx # Comment interface
+│   │   ├── ShareModal.tsx # Share interface
+│   │   └── FloatingActionButton.tsx # FAB for creating posts
+│   └── ui/               # Generic UI components
+├── store/                # State management
+│   ├── authStore.ts      # Authentication state
+│   ├── socialStore.ts    # Social interactions state
+│   └── themeStore.ts     # Theme state
+├── hooks/                # Custom hooks
+├── services/             # API services
 └── types/                # TypeScript type definitions
 ```
 
-## 🎨 Design System
+## 🔧 Key Components
 
-- **Primary Color:** #007AFF (iOS Blue)
-- **Secondary Color:** #32D74B (iOS Green)
-- **Accent Color:** #FF9500 (iOS Orange)
-- **Error Color:** #FF3B30 (iOS Red)
-- **Typography:** System fonts with proper hierarchy
-- **Spacing:** 8px base unit system
-- **Shadows:** Consistent elevation system
+### PostCard
+- Displays posts with images, text, and metadata
+- Handles like, comment, share, and save actions
+- Shows user information and post statistics
+- Integrates with comment and share modals
 
-## 🤖 AI-Assisted Development
+### CommentModal
+- Full-screen comment interface
+- Real-time comment posting
+- Like/unlike comments
+- Reply functionality (UI ready)
 
-This project extensively leveraged AI tools for:
+### ShareModal
+- Multiple platform sharing options
+- Post preview before sharing
+- Native share integration
+- Copy link functionality
 
-### Code Generation
-- Component boilerplate and TypeScript interfaces
-- State management patterns and API hooks
-- Form validation schemas and error handling
-- Responsive design patterns
+### StoriesBar
+- Horizontal scrollable stories
+- Add story button
+- Story status indicators
+- User avatars with story rings
 
-### Architecture Decisions
-- Project structure optimization
-- State management strategy
-- API layer design patterns
-- Error boundary implementations
+## 🎨 State Management
 
-### Performance Optimization
-- Memoization strategies for list rendering
-- Infinite scroll implementation
-- Caching patterns for API calls
-- Bundle optimization techniques
+### AuthStore
+- User authentication state
+- Login/logout functionality
+- User profile data
+- Follow/unfollow actions
 
-### Code Quality
-- TypeScript type safety throughout
-- Consistent styling patterns
-- Accessibility considerations
-- Error handling best practices
+### SocialStore
+- Posts data and interactions
+- Like/unlike state management
+- Comment system
+- Share tracking
+- Save/bookmark functionality
 
-## 🚀 Getting Started
+### ThemeStore
+- Dark/light theme switching
+- Color scheme management
+- Persistent theme preferences
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- Expo CLI (`npm install -g @expo/cli`)
+## 🔌 API Integration
 
-### Installation
+The app integrates with multiple APIs:
+- **JSONPlaceholder**: Basic posts and users
+- **DummyJSON**: Enhanced posts with reactions and tags
+- **Local State**: Real-time interactions and comments
 
-1. **Clone and install dependencies:**
-   ```bash
-   git clone <repository-url>
-   cd social-media-dashboard
-   npm install
-   ```
+## 🚀 Performance Features
 
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+- **Optimized Rendering**: Efficient list rendering with FlatList
+- **Image Optimization**: Lazy loading and caching
+- **Memory Management**: Proper cleanup and state management
+- **Smooth Animations**: Hardware-accelerated animations
 
-3. **Open the app:**
-   - Web: Open the provided localhost URL
-   - Mobile: Scan QR code with Expo Go app
-   - Simulator: Press 'i' for iOS or 'a' for Android
+## 📦 Dependencies
 
-### Test Credentials
-- **Username:** Any username (3+ characters)
-- **Password:** Any password (6+ characters)
+Key dependencies include:
+- **React Native**: Core framework
+- **Expo**: Development platform
+- **Zustand**: State management
+- **React Query**: Data fetching
+- **Lucide React Native**: Icons
+- **AsyncStorage**: Data persistence
 
-## 📊 API Integration
+## 🤝 Contributing
 
-### Primary API: JSONPlaceholder
-- Base URL: `https://jsonplaceholder.typicode.com/`
-- Used for: Posts, Users, Comments
-- Features: CRUD operations, pagination
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-### Secondary API: DummyJSON
-- Base URL: `https://dummyjson.com/`
-- Used for: Enhanced user data, search, reactions
-- Features: Rich metadata, user avatars, post tags
+## 📄 License
 
-## 🎯 Performance Features
+This project is licensed under the MIT License.
 
-- **Infinite Scrolling:** Efficient list rendering with automatic pagination
-- **Smart Caching:** 5-minute stale time for posts, 10-minute for users
-- **Optimistic Updates:** Immediate UI feedback for user actions
-- **Error Recovery:** Automatic retry with exponential backoff
-- **Memory Management:** Proper cleanup and component unmounting
+## 🎯 Roadmap
 
-## 🔐 Security Features
-
-- Input validation and sanitization
-- Protected route authentication
-- Secure storage for auth tokens
-- Error boundary protection
-- Type-safe API calls
-
-## 📱 Cross-Platform Compatibility
-
-- **iOS:** Full feature support with native feel
-- **Android:** Material Design adaptations
-- **Web:** Responsive design with touch/mouse support
-- **Tablet:** Optimized layouts for larger screens
-
-## 🧪 Testing Strategy
-
-The app includes comprehensive error handling and validation:
-
-- Form validation with real-time feedback
-- API error handling with retry mechanisms
-- Network connectivity awareness
-- Graceful degradation for offline scenarios
-
-## 🎨 UI/UX Highlights
-
-- **Micro-interactions:** Smooth button states and transitions
-- **Loading States:** Context-aware loading indicators
-- **Empty States:** Helpful messaging for empty content
-- **Error States:** Clear error messages with recovery actions
-- **Accessibility:** Proper contrast ratios and touch targets
-
-## 🚀 Future Enhancements
-
-- Push notifications integration
-- Real-time messaging
-- Advanced analytics dashboard
-- Social features (follow/unfollow)
-- Media upload functionality
-- Dark mode support
-
-## 📄 AI Development Journal
-
-### Tools Used
-- **Claude AI:** Architecture planning, component generation, optimization
-- **Code Analysis:** Performance bottleneck identification
-- **Type Generation:** Comprehensive TypeScript interfaces
-- **Error Handling:** Robust error boundary patterns
-
-### Key AI Contributions
-1. **State Management Architecture:** AI suggested Zustand + TanStack Query combination
-2. **Component Patterns:** Generated reusable component templates
-3. **Performance Optimization:** Identified memoization opportunities
-4. **User Experience:** Suggested intuitive interaction patterns
-
-### Beyond AI Enhancements
-- Custom gradient implementations
-- Advanced gesture handling
-- Platform-specific optimizations
-- Sophisticated caching strategies
-
----
-
-Built with ❤️ using React Native, Expo, and AI-assisted development practices.
+- [ ] Post creation functionality
+- [ ] Image upload and editing
+- [ ] Push notifications
+- [ ] Direct messaging
+- [ ] Video support
+- [ ] Advanced search filters
+- [ ] User profiles and settings
+- [ ] Social features (followers, following)
+- [ ] Analytics and insights

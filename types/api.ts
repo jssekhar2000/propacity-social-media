@@ -5,6 +5,9 @@ export interface User {
   email: string;
   phone: string;
   website: string;
+  avatar?: string;
+  followers?: number;
+  following?: number;
   company: {
     name: string;
     catchPhrase: string;
@@ -27,23 +30,38 @@ export interface Post {
   userId: number;
   title: string;
   body: string;
+  image?: string;
   user?: User;
   reactions?: number;
   tags?: string[];
+  likes?: number;
+  comments?: number;
+  shares?: number;
+  isLiked?: boolean;
+  isSaved?: boolean;
+  createdAt?: string;
+  location?: string;
 }
 
 export interface Comment {
   id: number;
   postId: number;
-  name: string;
-  email: string;
+  userId: number;
+  user: User;
   body: string;
+  likes: number;
+  isLiked: boolean;
+  createdAt: string;
+  replies?: Comment[];
 }
 
 export interface CreatePostData {
   title: string;
   body: string;
   userId: number;
+  image?: string;
+  tags?: string[];
+  location?: string;
 }
 
 export interface DummyUser {
@@ -53,6 +71,8 @@ export interface DummyUser {
   email: string;
   image: string;
   username: string;
+  followers?: number;
+  following?: number;
 }
 
 export interface DummyPost {
@@ -60,9 +80,35 @@ export interface DummyPost {
   title: string;
   body: string;
   userId: number;
-  tags: string[];
-  reactions: {
+  tags?: string[];
+  image?: string;
+  reactions?: {
     likes: number;
     dislikes: number;
   };
+  comments?: number;
+  shares?: number;
+  isLiked?: boolean;
+  isSaved?: boolean;
+  createdAt?: string;
+  location?: string;
+}
+
+export interface LikeData {
+  postId: number;
+  userId: number;
+  isLiked: boolean;
+}
+
+export interface CommentData {
+  postId: number;
+  userId: number;
+  body: string;
+  parentId?: number;
+}
+
+export interface ShareData {
+  postId: number;
+  userId: number;
+  platform: 'instagram' | 'facebook' | 'twitter' | 'whatsapp' | 'copy';
 }

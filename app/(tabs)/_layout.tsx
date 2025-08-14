@@ -9,15 +9,16 @@ export default function TabLayout() {
   const { colors } = useThemeStore();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.replace('/(auth)/login');
-    }
-  }, [isAuthenticated]);
+  // Temporarily disable authentication for testing
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     router.replace('/(auth)/login');
+  //   }
+  // }, [isAuthenticated]);
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   return null;
+  // }
 
   return (
     <Tabs
@@ -50,15 +51,6 @@ export default function TabLayout() {
           title: 'Search',
           tabBarIcon: ({ size, color }) => (
             <Search size={size} color={color} strokeWidth={2} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="create"
-        options={{
-          title: 'Create',
-          tabBarIcon: ({ size, color }) => (
-            <PlusCircle size={size} color={color} strokeWidth={2} />
           ),
         }}
       />
