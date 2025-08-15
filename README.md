@@ -250,10 +250,13 @@ npm run android
 
 ## 📝 **AI Development Journal**
 
-### **Tools Used**
-- **ChatGPT**: Code generation and problem-solving
-- **Claude**: Architecture decisions and optimization
-- **GitHub Copilot**: Boilerplate code and suggestions
+### Tools Used
+- **Claude** – Architecture decisions and optimization  
+- **ChatGPT** – Code generation, problem-solving, and prompt generation  
+- **Bolt.ai** – Boilerplate code, suggestions, and initial project setup  
+- **Cursor** – Component enhancements, low-level design (LLD), and auto code generation  
+- **WindSurf** – Auto code generation after Cursor's free plan limit is reached  
+
 
 ### **Key Learnings**
 - **AI-assisted development** significantly speeds up implementation
