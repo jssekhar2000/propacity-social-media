@@ -39,7 +39,7 @@ export default function CommentModal({ visible, onClose, post, user }: CommentMo
     unlikeComment 
   } = useSocialStore();
 
-  const comments = getPostComments(post.id);
+  const comments = getPostComments(post?.id);
 
   useEffect(() => {
     if (visible) {

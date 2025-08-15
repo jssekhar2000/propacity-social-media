@@ -3,17 +3,20 @@ export interface User {
   name: string;
   username: string;
   email: string;
-  phone: string;
-  website: string;
+  phone?: string;
+  website?: string;
   avatar?: string;
+  image?: string;
+  firstName?: string;
+  lastName?: string;
   followers?: number;
   following?: number;
-  company: {
+  company?: {
     name: string;
     catchPhrase: string;
     bs: string;
   };
-  address: {
+  address?: {
     street: string;
     suite: string;
     city: string;
@@ -32,7 +35,7 @@ export interface Post {
   body: string;
   image?: string;
   user?: User;
-  reactions?: number;
+  reactions?: number | { likes: number; dislikes: number };
   tags?: string[];
   likes?: number;
   comments?: number;
@@ -71,6 +74,8 @@ export interface DummyUser {
   email: string;
   image: string;
   username: string;
+  name?: string;
+  avatar?: string;
   followers?: number;
   following?: number;
 }
@@ -85,9 +90,10 @@ export interface DummyPost {
   reactions?: {
     likes: number;
     dislikes: number;
-  };
+  } | number;
   comments?: number;
   shares?: number;
+  likes?: number;
   isLiked?: boolean;
   isSaved?: boolean;
   createdAt?: string;

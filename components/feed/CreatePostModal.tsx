@@ -38,6 +38,65 @@ import { useAuthStore } from '@/store/authStore';
 import { Post, DummyPost } from '@/types/api';
 import AIContentEnhancer from './AIContentEnhancer';
 import HashtagSuggestions from './HashtagSuggestions';
+// Temporary inline constants to debug import issue
+const POST_CREATION = {
+  STEPS: [
+    { id: 1, title: 'Content', description: 'Write your post' },
+    { id: 2, title: 'Media', description: 'Add images' },
+    { id: 3, title: 'Enhance', description: 'Add tags & location' },
+    { id: 4, title: 'Review', description: 'Preview & publish' },
+  ],
+  AI_SUGGESTIONS: [
+    "Share your thoughts on today's events!",
+    "What's the highlight of your day?",
+    "Tell us about your latest adventure!",
+    "Share a moment that made you smile today.",
+    "What are you grateful for right now?",
+    "Share a tip or advice with the community!",
+    "What's your current mood? Express it!",
+    "Share something you learned today.",
+  ],
+  FORMATTING_OPTIONS: [
+    { id: 'bold', label: 'Bold' },
+    { id: 'italic', label: 'Italic' },
+    { id: 'list', label: 'List' },
+    { id: 'quote', label: 'Quote' },
+  ],
+};
+
+const UI_CONSTANTS = {
+  BORDER_RADIUS: {
+    SMALL: 8,
+    MEDIUM: 12,
+    LARGE: 16,
+    XLARGE: 20,
+    CIRCULAR: 50,
+  },
+  SPACING: {
+    XS: 4,
+    SM: 8,
+    MD: 12,
+    LG: 16,
+    XL: 20,
+    XXL: 24,
+  },
+  FONT_SIZE: {
+    XS: 10,
+    SM: 12,
+    MD: 14,
+    LG: 16,
+    XL: 18,
+    XXL: 20,
+    TITLE: 24,
+  },
+  ANIMATION: {
+    DURATION: {
+      FAST: 300,
+      NORMAL: 600,
+      SLOW: 800,
+    },
+  },
+};
 
 interface CreatePostModalProps {
   visible: boolean;
@@ -50,32 +109,14 @@ interface PostStep {
   description: string;
 }
 
-const POST_STEPS: PostStep[] = [
-  { id: 1, title: 'Content', description: 'Write your post' },
-  { id: 2, title: 'Media', description: 'Add images' },
-  { id: 3, title: 'Enhance', description: 'Add tags & location' },
-  { id: 4, title: 'Review', description: 'Preview & publish' },
-];
-
-const AI_SUGGESTIONS = [
-  "Share your thoughts on today's events!",
-  "What's the highlight of your day?",
-  "Tell us about your latest adventure!",
-  "Share a moment that made you smile today.",
-  "What are you grateful for right now?",
-  "Share a tip or advice with the community!",
-  "What's your current mood? Express it!",
-  "Share something you learned today.",
-];
-
 export default function CreatePostModal({ visible, onClose }: CreatePostModalProps) {
   const { colors } = useThemeStore();
   
   const FORMATTING_OPTIONS = [
-    { id: 'bold', icon: Type, label: 'Bold' },
-    { id: 'italic', icon: Type, label: 'Italic' },
-    { id: 'list', icon: List, label: 'List' },
-    { id: 'quote', icon: Quote, label: 'Quote' },
+    { id: 'bold', icon: Type, label: POST_CREATION.FORMATTING_OPTIONS[0].label },
+    { id: 'italic', icon: Type, label: POST_CREATION.FORMATTING_OPTIONS[1].label },
+    { id: 'list', icon: List, label: POST_CREATION.FORMATTING_OPTIONS[2].label },
+    { id: 'quote', icon: Quote, label: POST_CREATION.FORMATTING_OPTIONS[3].label },
   ];
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -218,7 +259,7 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
         isLiked: false,
         isSaved: false,
         createdAt: new Date().toISOString(),
-        user: currentUser,
+        user: currentUser as any,
       };
 
       addPost(newPost);
@@ -234,27 +275,29 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
 
   const renderStepIndicator = () => (
     <View style={styles.stepIndicator}>
-      {POST_STEPS.map((step, index) => (
+      {POST_CREATION.STEPS.map((step, index) => (
         <View key={step.id} style={styles.stepItem}>
-          <View style={[
-            styles.stepCircle,
-            {
-              backgroundColor: currentStep >= step.id ? colors.primary : colors.border,
-              borderColor: currentStep === step.id ? colors.primary : colors.border,
-            }
-          ]}>
-            {currentStep > step.id ? (
-              <Check size={16} color="#FFFFFF" />
-            ) : (
-              <Text style={[styles.stepNumber, { color: currentStep >= step.id ? '#FFFFFF' : colors.textSecondary }]}>
-                {step.id}
-              </Text>
-            )}
+          <View style={styles.stepContent}>
+            <View style={[
+              styles.stepCircle,
+              {
+                backgroundColor: currentStep >= step.id ? colors.primary : colors.border,
+                borderColor: currentStep === step.id ? colors.primary : colors.border,
+              }
+            ]}>
+              {currentStep > step.id ? (
+                <Check size={16} color="#FFFFFF" />
+              ) : (
+                <Text style={[styles.stepNumber, { color: currentStep >= step.id ? '#FFFFFF' : colors.textSecondary }]}>
+                  {step.id}
+                </Text>
+              )}
+            </View>
+            <Text style={[styles.stepTitle, { color: currentStep >= step.id ? colors.text : colors.textSecondary }]}>
+              {step.title}
+            </Text>
           </View>
-          <Text style={[styles.stepTitle, { color: currentStep >= step.id ? colors.text : colors.textSecondary }]}>
-            {step.title}
-          </Text>
-          {index < POST_STEPS.length - 1 && (
+          {index < POST_CREATION.STEPS.length - 1 && (
             <View style={[styles.stepLine, { backgroundColor: currentStep > step.id ? colors.primary : colors.border }]} />
           )}
         </View>
@@ -263,7 +306,7 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
   );
 
   const renderContentStep = () => (
-    <View style={styles.stepContent}>
+    <View style={styles.stepContentWrapper}>
       <View style={styles.inputContainer}>
         <TextInput
           ref={inputRef}
@@ -307,7 +350,7 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
 
       {showAISuggestions && (
         <View style={[styles.suggestionsContainer, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          {AI_SUGGESTIONS.map((suggestion, index) => (
+          {POST_CREATION.AI_SUGGESTIONS.map((suggestion, index) => (
             <TouchableOpacity
               key={index}
               style={styles.suggestionItem}
@@ -366,7 +409,7 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
   );
 
   const renderMediaStep = () => (
-    <View style={styles.stepContent}>
+    <View style={styles.stepContentWrapper}>
       <Text style={[styles.stepTitle, { color: colors.text }]}>
         Add Images to Your Post
       </Text>
@@ -413,7 +456,7 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
   );
 
   const renderEnhanceStep = () => (
-    <View style={styles.stepContent}>
+    <View style={styles.stepContentWrapper}>
       <Text style={[styles.stepTitle, { color: colors.text }]}>
         Enhance Your Post
       </Text>
@@ -492,7 +535,7 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
   );
 
   const renderReviewStep = () => (
-    <View style={styles.stepContent}>
+    <View style={styles.stepContentWrapper}>
       <Text style={[styles.stepTitle, { color: colors.text }]}>
         Review Your Post
       </Text>
@@ -500,12 +543,12 @@ export default function CreatePostModal({ visible, onClose }: CreatePostModalPro
       <View style={[styles.previewContainer, { backgroundColor: colors.surface, borderColor: colors.border }]}>
         <View style={styles.previewHeader}>
           <Image
-            source={{ uri: currentUser?.avatar || `https://picsum.photos/40/40?random=${currentUser?.id}` }}
+            source={{ uri: (currentUser as any)?.avatar || (currentUser as any)?.image || `https://picsum.photos/40/40?random=${currentUser?.id || '1'}` }}
             style={styles.previewAvatar}
           />
           <View style={styles.previewUserInfo}>
             <Text style={[styles.previewUsername, { color: colors.text }]}>
-              {currentUser?.name || 'User'}
+              {(currentUser as any)?.name || (currentUser as any)?.firstName || 'User'}
             </Text>
             <Text style={[styles.previewTime, { color: colors.textSecondary }]}>
               Just now
@@ -679,6 +722,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
+  stepContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
   stepCircle: {
     width: 32,
     height: 32,
@@ -686,6 +734,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
+    marginRight: 8,
   },
   stepNumber: {
     fontSize: 14,
@@ -694,7 +743,6 @@ const styles = StyleSheet.create({
   stepTitle: {
     fontSize: 12,
     fontWeight: '500',
-    marginLeft: 8,
     flex: 1,
   },
   stepLine: {
@@ -708,10 +756,10 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 16,
   },
-  stepContent: {
+  stepContentWrapper: {
     gap: 20,
   },
-  stepTitle: {
+  stepContentTitle: {
     fontSize: 20,
     fontWeight: '700',
     marginBottom: 8,
