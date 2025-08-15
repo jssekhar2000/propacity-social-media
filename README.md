@@ -270,6 +270,35 @@ npm run android
 - **Cross-platform specific** optimizations
 - **Integration testing** and debugging
 
+## 📱 Screenshots
+
+### Sign Up
+![Sign Up](docs/assets/signup.png)
+
+### Login
+![Login](docs/assets/login.png)
+
+### Feed Screen
+![Feed Screen](docs/assets/feed1.png) ![Feed Screen](docs/assets/feed2.png)
+
+### Post Creation
+![Post Creation](docs/assets/create.png)
+
+### Search
+![Search](docs/assets/search.png)
+
+### Analytics Dashboard
+![Analytics Dashboard](docs/assets/analytics.png)
+
+### Notifications
+![Notifications](docs/assets/notifications.png)
+
+### Profile
+![Profile](docs/assets/profile.png) ![Profile](docs/assets/profile2.png)
+
+### Settings
+![Settings](docs/assets/settings.png)
+
 ## 🤝 **Contributing**
 
 1. Fork the repository
